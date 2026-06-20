@@ -1,11 +1,11 @@
 import { X, Mail, Globe, Calendar, Tag, TrendingUp, MessageSquare } from 'lucide-react'
 
 const VIDEO_PRESENCE = {
-  None:          { label: 'None',       bg: '#3a1a1a', color: '#ef4444', border: '#7f1d1d' },
-  Weak:          { label: 'Weak',       bg: '#3a2a1a', color: '#f97316', border: '#7c2d12' },
-  Moderate:      { label: 'Moderate',   bg: '#3a3520', color: '#eab308', border: '#713f12' },
-  Strong:        { label: 'Strong',     bg: '#1a3a2a', color: '#22c55e', border: '#14532d' },
-  'Very Strong': { label: 'Very Strong',bg: '#1a3a1a', color: '#00d68f', border: '#065f46' },
+  None:          { label: 'None',        bg: '#3a1a1a', color: '#ef4444', border: '#7f1d1d' },
+  Weak:          { label: 'Weak',        bg: '#3a2a1a', color: '#f97316', border: '#7c2d12' },
+  Moderate:      { label: 'Moderate',    bg: '#3a3520', color: '#eab308', border: '#713f12' },
+  Strong:        { label: 'Strong',      bg: '#1a3a2a', color: '#22c55e', border: '#14532d' },
+  'Very Strong': { label: 'Very Strong', bg: '#1a3a1a', color: '#00d68f', border: '#065f46' },
 }
 const STATUS_STYLES = {
   New:       { bg: '#1a2a3a', color: '#60a5fa', border: '#1e3a5f' },
@@ -26,8 +26,8 @@ export default function LeadPanel({ lead, onClose }) {
   const scoreColor = score >= 80 ? '#00d68f' : score >= 60 ? '#eab308' : '#ef4444'
 
   const activity = [
-    { date: '2 days ago', text: , icon: '🔄' },
-    { date: '5 days ago', text: 'Lead added to pipeline', icon: '➕' },
+    { date: '2 days ago', text: 'Status: ' + lead.status, icon: '🔄' },
+    { date: '5 days ago', text: 'Lead added to pipeline',  icon: '➕' },
     { date: '1 week ago', text: 'Video presence analysed', icon: '🎥' },
   ]
 
@@ -40,7 +40,6 @@ export default function LeadPanel({ lead, onClose }) {
         overflowY:'auto',display:'flex',flexDirection:'column',
         animation:'slideInPanel .22s ease',
       }}>
-        {/* Header */}
         <div style={{padding:'20px 24px',borderBottom:'1px solid #1e2030',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
           <div>
             <div style={{fontWeight:700,fontSize:18,color:'#f1f5f9'}}>{lead.business}</div>
@@ -52,35 +51,32 @@ export default function LeadPanel({ lead, onClose }) {
         </div>
 
         <div style={{padding:'20px 24px',flex:1}}>
-          {/* Badges */}
           <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:24}}>
-            <span style={{padding:'4px 10px',borderRadius:20,fontSize:12,fontWeight:600,background:st.bg,color:st.color,border:}}>{lead.status}</span>
-            <span style={{padding:'4px 10px',borderRadius:20,fontSize:12,fontWeight:600,background:vp.bg,color:vp.color,border:}}>📹 {lead.video}</span>
-            <span style={{fontSize:12,fontWeight:600,color:TEMP_COLORS[lead.temp]||'#94a3b8'}}>{TEMP_ICONS[lead.temp]||''} {lead.temp}</span>
+            <span style={{padding:'4px 10px',borderRadius:20,fontSize:12,fontWeight:600,background:st.bg,color:st.color,border:'1px solid ' + st.border}}>{lead.status}</span>
+            <span style={{padding:'4px 10px',borderRadius:20,fontSize:12,fontWeight:600,background:vp.bg,color:vp.color,border:'1px solid ' + vp.border}}>{'📹 ' + lead.video}</span>
+            <span style={{fontSize:12,fontWeight:600,color:TEMP_COLORS[lead.temp]||'#94a3b8'}}>{(TEMP_ICONS[lead.temp]||'') + ' ' + lead.temp}</span>
           </div>
 
-          {/* Score */}
           <div style={{background:'#0a0b0f',border:'1px solid #1e2030',borderRadius:12,padding:'16px 20px',marginBottom:20}}>
             <div style={{fontSize:12,color:'#64748b',marginBottom:8}}>AI Lead Score</div>
             <div style={{display:'flex',alignItems:'center',gap:14}}>
               <div style={{fontSize:38,fontWeight:800,color:scoreColor,lineHeight:1}}>{score}</div>
               <div style={{flex:1}}>
                 <div style={{background:'#1e2030',borderRadius:4,height:8,overflow:'hidden'}}>
-                  <div style={{width:,height:'100%',background:scoreColor,borderRadius:4,transition:'width .5s ease'}}/>
+                  <div style={{width:score+'%',height:'100%',background:scoreColor,borderRadius:4,transition:'width .5s ease'}}/>
                 </div>
                 <div style={{fontSize:11,color:'#475569',marginTop:4}}>out of 100</div>
               </div>
             </div>
           </div>
 
-          {/* Details */}
           <div style={{marginBottom:20}}>
             <div style={{fontSize:12,color:'#64748b',textTransform:'uppercase',letterSpacing:'.05em',marginBottom:12}}>Details</div>
             {[
-              [<Globe size={14}/>, 'Industry', lead.industry],
-              [<Tag size={14}/>, 'Source', lead.source],
+              [<Globe size={14}/>,      'Industry', lead.industry],
+              [<Tag size={14}/>,        'Source',   lead.source],
               [<TrendingUp size={14}/>, 'Spending', lead.spending],
-              [<Calendar size={14}/>, 'Founded', lead.founded],
+              [<Calendar size={14}/>,   'Founded',  lead.founded],
             ].map(([icon,label,val]) => (
               <div key={label} style={{display:'flex',alignItems:'center',gap:10,marginBottom:9}}>
                 <span style={{color:'#475569',width:20,flexShrink:0}}>{icon}</span>
@@ -90,7 +86,6 @@ export default function LeadPanel({ lead, onClose }) {
             ))}
           </div>
 
-          {/* Contact */}
           <div style={{marginBottom:20}}>
             <div style={{fontSize:12,color:'#64748b',textTransform:'uppercase',letterSpacing:'.05em',marginBottom:12}}>Contact</div>
             <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:8}}>
@@ -99,11 +94,10 @@ export default function LeadPanel({ lead, onClose }) {
             </div>
             <div style={{display:'flex',alignItems:'center',gap:10}}>
               <Globe size={14} style={{color:'#475569'}}/>
-              <span style={{fontSize:13,color:'#60a5fa'}}>{lead.phone}</span>
+              <span style={{fontSize:13,color:'#94a3b8'}}>{lead.phone}</span>
             </div>
           </div>
 
-          {/* Notes */}
           <div style={{marginBottom:20}}>
             <div style={{fontSize:12,color:'#64748b',textTransform:'uppercase',letterSpacing:'.05em',marginBottom:10,display:'flex',alignItems:'center',gap:6}}>
               <MessageSquare size={12}/> Notes
@@ -114,13 +108,11 @@ export default function LeadPanel({ lead, onClose }) {
                 outline:'none',fontFamily:'inherit',boxSizing:'border-box'}}/>
           </div>
 
-          {/* Summary */}
           <div style={{marginBottom:20}}>
             <div style={{fontSize:12,color:'#64748b',textTransform:'uppercase',letterSpacing:'.05em',marginBottom:10}}>Summary</div>
             <p style={{fontSize:13,color:'#94a3b8',lineHeight:1.6,margin:0}}>{lead.summary}</p>
           </div>
 
-          {/* Activity */}
           <div>
             <div style={{fontSize:12,color:'#64748b',textTransform:'uppercase',letterSpacing:'.05em',marginBottom:12}}>Activity Timeline</div>
             {activity.map((a,i) => (
@@ -135,7 +127,6 @@ export default function LeadPanel({ lead, onClose }) {
           </div>
         </div>
 
-        {/* Footer */}
         <div style={{padding:'16px 24px',borderTop:'1px solid #1e2030',display:'flex',gap:8}}>
           <button style={{flex:1,padding:'10px 0',background:'#00d68f',color:'#0a0b0f',border:'none',borderRadius:8,fontWeight:700,fontSize:14,cursor:'pointer'}}>
             Send Email
@@ -145,7 +136,7 @@ export default function LeadPanel({ lead, onClose }) {
           </button>
         </div>
       </div>
-      <style>{}</style>
+      <style>{'@keyframes slideInPanel{from{transform:translateX(100%)}to{transform:translateX(0)}}'}</style>
     </>
   )
 }
