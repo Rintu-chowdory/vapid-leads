@@ -11,6 +11,7 @@ const nav = [
   { to: '/my-ai',     label: 'My AI',     icon: <Bot size={16} /> },
   { to: '/settings',  label: 'Settings',  icon: <Settings size={16} /> },
   { to: '/datenschutz', label: 'Datenschutz', icon: <Shield size={16} /> },
+  { to: '/impressum', label: 'Impressum', icon: <Shield size={16} /> },
 ]
 
 export default function Layout({ children }) {
