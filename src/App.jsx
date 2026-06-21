@@ -8,6 +8,7 @@ import EmailPage from './pages/EmailPage.jsx'
 import MyAI from './pages/MyAI.jsx'
 import Pipeline from './pages/Pipeline.jsx'
 import Settings from './pages/Settings.jsx'
+import Datenschutz from './pages/Datenschutz.jsx'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path='/my-ai' element={<MyAI />} />
         <Route path='/pipeline' element={<Pipeline />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='/datenschutz' element={<Datenschutz />} />
       </Routes>
     </Layout>
   )
