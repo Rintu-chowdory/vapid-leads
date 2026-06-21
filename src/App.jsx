@@ -9,6 +9,7 @@ import MyAI from './pages/MyAI.jsx'
 import Pipeline from './pages/Pipeline.jsx'
 import Settings from './pages/Settings.jsx'
 import Datenschutz from './pages/Datenschutz.jsx'
+import Impressum from './pages/Impressum.jsx'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path='/pipeline' element={<Pipeline />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/datenschutz' element={<Datenschutz />} />
+        <Route path='/impressum' element={<Impressum />} />
       </Routes>
     </Layout>
   )
