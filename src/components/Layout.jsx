@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Users, Map, Sparkles, Mail, Bot, BarChart2, Kanban, Settings } from 'lucide-react'
+import { Users, Map, Sparkles, Mail, Bot, BarChart2, Kanban, Settings, Shield } from 'lucide-react'
 
 const nav = [
   { to: '/leads',     label: 'Leads',     icon: <Users size={16} /> },
@@ -10,6 +10,7 @@ const nav = [
   { to: '/email',     label: 'Email',     icon: <Mail size={16} /> },
   { to: '/my-ai',     label: 'My AI',     icon: <Bot size={16} /> },
   { to: '/settings',  label: 'Settings',  icon: <Settings size={16} /> },
+  { to: '/datenschutz', label: 'Datenschutz', icon: <Shield size={16} /> },
 ]
 
 export default function Layout({ children }) {
